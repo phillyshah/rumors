@@ -1,0 +1,9 @@
+[
+  {"topic": "pricing", "keywords": ["price", "pricing", "discount", "rebate", "gpo", "contract", "capitated", "bundle"]},
+  {"topic": "personnel", "keywords": ["hired", "left", "joined", "poached", "quit", "recruiter", "defected", "new hire", "rep"]},
+  {"topic": "account_movement", "keywords": ["lost", "won", "switched", "converted", "flipped", "signed", "dropped"]},
+  {"topic": "distributor_health", "keywords": ["distributor", "layoffs", "struggling", "expanding", "closing", "restructuring"]},
+  {"topic": "product", "keywords": ["510k", "launch", "recall", "clearance", "pipeline", "fda", "new system", "instrument"]},
+  {"topic": "regulatory", "keywords": ["recall", "warning letter", "audit", "pma"]},
+  {"topic": "m&a", "keywords": ["acquired", "acquisition", "merger", "buying", "bought", "takeover"]}
+]

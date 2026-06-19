@@ -1,0 +1,7 @@
+[
+  {"canonical": "Northeast", "aliases": ["the northeast", "new england", "mid-atlantic", "the mid-atlantic"]},
+  {"canonical": "Southeast", "aliases": ["the southeast", "south east", "the south", "dixie", "the deep south", "the southeast region"]},
+  {"canonical": "Midwest", "aliases": ["the midwest", "mid west", "the heartland", "great plains", "the great plains"]},
+  {"canonical": "Southwest", "aliases": ["the southwest", "south west", "the desert southwest", "southwest region"]},
+  {"canonical": "West", "aliases": ["the west", "west coast", "pacific", "pacific northwest", "the pacific", "the west coast"]}
+]

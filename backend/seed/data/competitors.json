@@ -1,0 +1,16 @@
+[
+  {"canonical": "Zimmer Biomet", "aliases": ["zimmer", "biomet", "zb", "zimmer biomet"]},
+  {"canonical": "Stryker", "aliases": ["stryker", "stryk"]},
+  {"canonical": "DePuy Synthes", "aliases": ["depuy", "synthes", "j&j", "jnj", "johnson & johnson", "johnson and johnson"]},
+  {"canonical": "Smith+Nephew", "aliases": ["smith nephew", "smith+nephew", "smith and nephew", "s&n"]},
+  {"canonical": "Medtronic", "aliases": ["medtronic", "medtronic spine"]},
+  {"canonical": "Globus Medical", "aliases": ["globus", "nuvasive"]},
+  {"canonical": "Arthrex", "aliases": ["arthrex"]},
+  {"canonical": "Exactech", "aliases": ["exactech"]},
+  {"canonical": "Enovis", "aliases": ["enovis", "djo"]},
+  {"canonical": "CONMED", "aliases": ["conmed"]},
+  {"canonical": "Integra LifeSciences", "aliases": ["integra"]},
+  {"canonical": "Orthofix", "aliases": ["orthofix"]},
+  {"canonical": "Bioventus", "aliases": ["bioventus"]},
+  {"canonical": "Paragon 28", "aliases": ["paragon 28", "paragon28", "p28"]}
+]
