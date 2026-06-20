@@ -1,0 +1,24 @@
+# Copy this file to /opt/traefik/dynamic/rumors.yml on the server.
+# Traefik's file watcher picks it up automatically — no Traefik restart needed.
+#
+# Port 5003 — the VPS already runs:
+#   :5000 = tmcheck        (tm.phillyshah.com)
+#   :5001 = MO Commission  (mo-commissions.90ten.life)
+#   :5002 = Maxx Health    (commissions.phillyshah.com)
+#   :5003 = THIS app       (rumors.90ten.life)
+
+http:
+  routers:
+    rumors:
+      rule: "Host(`rumors.90ten.life`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+      service: rumors-svc
+
+  services:
+    rumors-svc:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1:5003"
