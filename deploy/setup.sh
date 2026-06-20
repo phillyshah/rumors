@@ -17,7 +17,7 @@ fi
 
 echo "=== 1. System deps ==="
 apt-get update -q
-apt-get install -y -q python3 python3-venv python3-pip nodejs npm git
+apt-get install -y -q python3 python3-venv python3-pip nodejs git
 
 echo "=== 2. Clone / pull repo ==="
 if [ -d "$APP_DIR/.git" ]; then
