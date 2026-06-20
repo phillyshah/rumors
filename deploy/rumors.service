@@ -1,12 +1,13 @@
 [Unit]
 Description=Field Intel — rumors API (uvicorn via gunicorn)
-After=network.target postgresql.service
+After=network.target
 
 [Service]
 User=root
 WorkingDirectory=/opt/rumors/backend
 EnvironmentFile=/opt/rumors/.env
 ExecStart=/opt/rumors/venv/bin/gunicorn app.main:app \
+    --preload \
     --worker-class uvicorn.workers.UvicornWorker \
     --workers 2 \
     --bind 127.0.0.1:5003 \

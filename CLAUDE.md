@@ -35,9 +35,10 @@ python -m pytest tests/ -v
 
 Live at **https://rumors.90ten.life** · Hostinger VPS `72.62.174.193`
 
-**First-time setup** (run as root on VPS):
+**First-time setup** (run as root on VPS, already cloned to /opt/rumors):
 ```bash
-DB_PASS=your-secure-password bash /opt/rumors/deploy/setup.sh
+export DATABASE_URL='postgresql://postgres:[password]@[host]:5432/postgres'
+bash /opt/rumors/deploy/setup.sh
 ```
 
 **Routine deploy** (run locally):
