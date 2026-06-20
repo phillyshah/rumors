@@ -3,7 +3,7 @@
 # Run locally: bash deploy/deploy.sh
 set -euo pipefail
 
-VPS=root@72.62.174.193
+VPS=root@2.57.91.91
 APP_DIR=/opt/rumors
 
 echo "==> Deploying to $VPS..."
