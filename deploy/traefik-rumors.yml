@@ -21,4 +21,4 @@ http:
     rumors-svc:
       loadBalancer:
         servers:
-          - url: "http://127.0.0.1:5003"
+          - url: "http://host.docker.internal:5003"
