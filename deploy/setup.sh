@@ -17,7 +17,7 @@ fi
 
 echo "=== 1. System deps ==="
 apt-get update -q
-apt-get install -y -q python3.11 python3.11-venv python3-pip nodejs npm git
+apt-get install -y -q python3 python3-venv python3-pip nodejs npm git
 
 echo "=== 2. Clone / pull repo ==="
 if [ -d "$APP_DIR/.git" ]; then
@@ -27,7 +27,7 @@ else
 fi
 
 echo "=== 3. Python venv ==="
-python3.11 -m venv "$APP_DIR/venv"
+python3 -m venv "$APP_DIR/venv"
 "$APP_DIR/venv/bin/pip" install -q --upgrade pip
 "$APP_DIR/venv/bin/pip" install -q -r "$APP_DIR/backend/requirements.txt"
 

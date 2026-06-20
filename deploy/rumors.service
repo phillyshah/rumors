@@ -1,5 +1,5 @@
 [Unit]
-Description=Field Intel — rumors API (uvicorn via gunicorn)
+Description=Field Intel rumors API (uvicorn via gunicorn)
 After=network.target
 
 [Service]
