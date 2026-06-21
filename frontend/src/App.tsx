@@ -105,7 +105,7 @@ export default function App() {
       {showWhatsNew && <WhatsNewModal onClose={() => setShowWhatsNew(false)} />}
       <BottomNav user={user} onWhatsNew={() => setShowWhatsNew(true)} onLogout={handleLogout} />
       <Routes>
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} onWhatsNew={() => setShowWhatsNew(true)} />} />
         <Route path="/" element={<AuthGuard user={user}><Capture user={user!} onLogout={handleLogout} /></AuthGuard>} />
         <Route path="/search" element={<AuthGuard user={user}><Search user={user!} onLogout={handleLogout} /></AuthGuard>} />
         <Route path="/notes/:id" element={<AuthGuard user={user}><NoteDetail /></AuthGuard>} />

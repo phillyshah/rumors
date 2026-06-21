@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { login, register, type User } from '../api'
+import { CURRENT_VERSION } from '../releaseNotes'
 
 interface LoginProps {
   onLogin: (user: User) => void
+  onWhatsNew: () => void
 }
 
-export default function Login({ onLogin }: LoginProps) {
+export default function Login({ onLogin, onWhatsNew }: LoginProps) {
   const navigate = useNavigate()
   const [mode, setMode] = useState<'login' | 'register'>('login')
   const [email, setEmail] = useState('')
@@ -96,6 +98,12 @@ export default function Login({ onLogin }: LoginProps) {
             <>Already have an account? <a href="#" onClick={e => { e.preventDefault(); setMode('login') }}>Sign in</a></>
           )}
         </div>
+      </div>
+
+      <div className="login-footer">
+        <a href="#" className="login-footer-link" onClick={e => { e.preventDefault(); onWhatsNew() }}>What's New</a>
+        <span className="login-footer-sep">·</span>
+        <span className="login-footer-version">{CURRENT_VERSION}</span>
       </div>
     </div>
   )
