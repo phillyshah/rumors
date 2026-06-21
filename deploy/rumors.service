@@ -10,7 +10,7 @@ ExecStart=/opt/rumors/venv/bin/gunicorn app.main:app \
     --preload \
     --worker-class uvicorn.workers.UvicornWorker \
     --workers 2 \
-    --bind 127.0.0.1:5003 \
+    --bind 0.0.0.0:5003 \
     --access-logfile /var/log/rumors-access.log \
     --error-logfile /var/log/rumors-error.log
 Restart=always
