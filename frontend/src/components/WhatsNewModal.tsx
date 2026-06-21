@@ -1,14 +1,18 @@
-import { RELEASE_NOTES } from '../releaseNotes'
+import { RELEASE_NOTES, CURRENT_VERSION } from '../releaseNotes'
 
 interface WhatsNewModalProps {
   onClose: () => void
 }
 
 export default function WhatsNewModal({ onClose }: WhatsNewModalProps) {
+  const handleClose = () => {
+    localStorage.setItem('field_intel_seen_version', CURRENT_VERSION)
+    onClose()
+  }
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-box" onClick={e => e.stopPropagation()}>
-        <button className="modal-close-x" onClick={onClose} aria-label="Close">✕</button>
+        <button className="modal-close-x" onClick={handleClose} aria-label="Close">✕</button>
 
         <h2 className="modal-title">✨ What's New</h2>
 
@@ -31,7 +35,7 @@ export default function WhatsNewModal({ onClose }: WhatsNewModalProps) {
             <li><strong>Search</strong> — Find notes by typing anything — competitor name, city, topic, or free text.</li>
             <li><strong>Detail</strong> — Tap any note to see full text, all tags, and who logged it.</li>
           </ul>
-          <button className="btn btn-primary" onClick={onClose}>Got it</button>
+          <button className="btn btn-primary" onClick={handleClose}>Got it</button>
         </div>
       </div>
     </div>
