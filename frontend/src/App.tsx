@@ -14,7 +14,7 @@ function AuthGuard({ user, children }: { user: User | null; children: React.Reac
   return <>{children}</>
 }
 
-function BottomNav({ user, onWhatsNew }: { user: User | null; onWhatsNew: () => void }) {
+function BottomNav({ user, onWhatsNew, onLogout }: { user: User | null; onWhatsNew: () => void; onLogout: () => void }) {
   const { pathname } = useLocation()
   if (!user || pathname === '/login') return null
 
@@ -47,6 +47,14 @@ function BottomNav({ user, onWhatsNew }: { user: User | null; onWhatsNew: () => 
           Admin
         </NavLink>
       )}
+      <button className="nav-btn" onClick={onLogout}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        Logout
+      </button>
     </nav>
   )
 }
@@ -54,7 +62,6 @@ function BottomNav({ user, onWhatsNew }: { user: User | null; onWhatsNew: () => 
 function checkAndShowWhatsNew(setShowWhatsNew: (v: boolean) => void) {
   const seen = localStorage.getItem('field_intel_seen_version')
   if (seen !== CURRENT_VERSION) {
-    localStorage.setItem('field_intel_seen_version', CURRENT_VERSION)
     setShowWhatsNew(true)
   }
 }
@@ -96,7 +103,7 @@ export default function App() {
   return (
     <BrowserRouter>
       {showWhatsNew && <WhatsNewModal onClose={() => setShowWhatsNew(false)} />}
-      <BottomNav user={user} onWhatsNew={() => setShowWhatsNew(true)} />
+      <BottomNav user={user} onWhatsNew={() => setShowWhatsNew(true)} onLogout={handleLogout} />
       <Routes>
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/" element={<AuthGuard user={user}><Capture user={user!} onLogout={handleLogout} /></AuthGuard>} />
