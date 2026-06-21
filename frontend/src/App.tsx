@@ -6,13 +6,15 @@ import Search from './screens/Search'
 import NoteDetail from './screens/NoteDetail'
 import Login from './screens/Login'
 import Admin from './screens/Admin'
+import WhatsNewModal from './components/WhatsNewModal'
+import { CURRENT_VERSION } from './releaseNotes'
 
 function AuthGuard({ user, children }: { user: User | null; children: React.ReactNode }) {
   if (!user) return <Navigate to="/login" replace />
   return <>{children}</>
 }
 
-function BottomNav({ user }: { user: User | null }) {
+function BottomNav({ user, onWhatsNew }: { user: User | null; onWhatsNew: () => void }) {
   const { pathname } = useLocation()
   if (!user || pathname === '/login') return null
 
@@ -30,6 +32,13 @@ function BottomNav({ user }: { user: User | null }) {
         </svg>
         Search
       </NavLink>
+      <button className="nav-btn" onClick={onWhatsNew}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 01-3.46 0" />
+        </svg>
+        What's New
+      </button>
       {user.is_admin && (
         <NavLink to="/admin" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -42,13 +51,25 @@ function BottomNav({ user }: { user: User | null }) {
   )
 }
 
+function checkAndShowWhatsNew(setShowWhatsNew: (v: boolean) => void) {
+  const seen = localStorage.getItem('field_intel_seen_version')
+  if (seen !== CURRENT_VERSION) {
+    localStorage.setItem('field_intel_seen_version', CURRENT_VERSION)
+    setShowWhatsNew(true)
+  }
+}
+
 export default function App() {
   const [user, setUser] = useState<User | null | undefined>(undefined)
+  const [showWhatsNew, setShowWhatsNew] = useState(false)
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) { setUser(null); return }
-    getMe().then(setUser).catch(() => {
+    getMe().then(u => {
+      setUser(u)
+      checkAndShowWhatsNew(setShowWhatsNew)
+    }).catch(() => {
       localStorage.removeItem('token')
       setUser(null)
     })
@@ -67,11 +88,17 @@ export default function App() {
     setUser(null)
   }
 
+  const handleLogin = (u: User) => {
+    setUser(u)
+    checkAndShowWhatsNew(setShowWhatsNew)
+  }
+
   return (
     <BrowserRouter>
-      <BottomNav user={user} />
+      {showWhatsNew && <WhatsNewModal onClose={() => setShowWhatsNew(false)} />}
+      <BottomNav user={user} onWhatsNew={() => setShowWhatsNew(true)} />
       <Routes>
-        <Route path="/login" element={<Login onLogin={setUser} />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/" element={<AuthGuard user={user}><Capture user={user!} onLogout={handleLogout} /></AuthGuard>} />
         <Route path="/search" element={<AuthGuard user={user}><Search user={user!} onLogout={handleLogout} /></AuthGuard>} />
         <Route path="/notes/:id" element={<AuthGuard user={user}><NoteDetail /></AuthGuard>} />
